@@ -1,0 +1,11 @@
+
+\.gradle/3\.0/taskArtifacts/
+
+\.gradle/minecraft/
+
+\.idea/
+
+\.gradle/
+\classes
+\build
+\run

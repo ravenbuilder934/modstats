@@ -1,0 +1,15 @@
+[
+{
+  "modid": "modstats",
+  "name": "Mod Stats",
+  "description": "Mod Stats is a mod which allows you to gather usage statics about the mod used on a server",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://minecolonies.com",
+  "updateUrl": "",
+  "authorList": ["Let's Dev Together Team"],
+  "logoFile": "assets/minecolonies/Logo.jpg",
+  "screenshots": [],
+  "dependencies": []
+}
+]
