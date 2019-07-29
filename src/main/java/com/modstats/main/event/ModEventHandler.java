@@ -5,9 +5,11 @@ import com.modstats.main.Configurations;
 import com.modstats.main.ModStats;
 import com.modstats.main.event.capabilityproviders.ModStatsWorldCapabilityProvider;
 import com.modstats.main.util.Constants;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.enchanting.EnchantmentLevelSetEvent;
 import net.minecraftforge.event.entity.EntityMountEvent;
@@ -146,7 +148,10 @@ public class ModEventHandler
         if (!event.getEntity().getEntityWorld().isRemote && Configurations.entityInteract)
         {
             final IModStatManager statCap = event.getEntity().getEntityWorld().getMinecraftServer().worlds[0].getCapability(ModStats.MOD_STAT_CAP, null);
-            statCap.incrementModUsage(EntityList.getKey(event.getTarget()).getNamespace());
+            if (event.getTarget() != null && EntityList.getKey(event.getTarget()) != null)
+            {
+                statCap.incrementModUsage(EntityList.getKey(event.getTarget()).getNamespace());
+            }
         }
     }
 
@@ -191,23 +196,26 @@ public class ModEventHandler
     @SubscribeEvent
     public void on(@NotNull final LivingAttackEvent event)
     {
-        if (!event.getEntity().getEntityWorld().isRemote && Configurations.entityAttack)
+        final Entity entity = event.getEntity();
+        if (entity != null && Configurations.entityAttack)
         {
-            final IModStatManager statCap = event.getEntity().getEntityWorld().getMinecraftServer().worlds[0].getCapability(ModStats.MOD_STAT_CAP, null);
-            if (event.getEntity() != null)
+            final World world = entity.getEntityWorld();
+            if (world instanceof WorldServer && world.getMinecraftServer() != null)
             {
+                final IModStatManager statCap = world.getMinecraftServer().worlds[0].getCapability(ModStats.MOD_STAT_CAP, null);
                 final ResourceLocation loc = EntityList.getKey(event.getEntity());
                 if (loc != null)
                 {
                     statCap.incrementModUsage(loc.getNamespace());
                 }
-            }
-            if (event.getSource().getTrueSource() != null)
-            {
-                final ResourceLocation key = EntityList.getKey(event.getSource().getTrueSource());
-                if (key != null)
+
+                if (event.getSource().getTrueSource() != null)
                 {
-                    statCap.incrementModUsage(key.getNamespace());
+                    final ResourceLocation key = EntityList.getKey(event.getSource().getTrueSource());
+                    if (key != null)
+                    {
+                        statCap.incrementModUsage(key.getNamespace());
+                    }
                 }
             }
         }

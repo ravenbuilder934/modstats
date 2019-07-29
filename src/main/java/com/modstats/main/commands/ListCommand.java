@@ -68,7 +68,7 @@ public class ListCommand extends CommandBase
     /**
      * The suggested command for the next and prev page.
      */
-    private static final String LIST_COMMAND_SUGGESTED = "/" + ModStatsCommand.NAME + " " + NAME + "%d";
+    private static final String LIST_COMMAND_SUGGESTED = "/" + ModStatsCommand.NAME + " " + NAME + " %d";
 
     @NotNull
     @Override
@@ -152,7 +152,7 @@ public class ListCommand extends CommandBase
 
         final List<Tuple<String, Integer>> modsPage;
 
-        if (pageStartIndex < 0 || pageStartIndex >= page)
+        if (pageStartIndex < 0 || pageStartIndex >= count)
         {
             modsPage = new ArrayList<>();
         }
