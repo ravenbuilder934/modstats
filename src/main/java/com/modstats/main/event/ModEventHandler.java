@@ -277,7 +277,7 @@ public class ModEventHandler
         if (!event.getEntity().getEntityWorld().isRemote && Configurations.entityAttack)
         {
             final IModStatManager statCap = event.getEntity().getEntityWorld().getMinecraftServer().worlds[0].getCapability(ModStats.MOD_STAT_CAP, null);
-            if (event.getEntity() != null)
+            if (event.getEntity() != null && EntityList.getKey(event.getEntity()) != null)
             {
                 statCap.incrementModUsage(EntityList.getKey(event.getEntity()).getNamespace());
             }
