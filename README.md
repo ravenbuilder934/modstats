@@ -169,10 +169,10 @@ ModStats crashes every time?  Have a suggestion?  Found a bug?  Create an issue 
 For Users
 --
 
-All our versions can be found downloadable at curse:
+All our versions can be found on Curseforge:
 
-https://minecraft.curseforge.com/projects/modstats
+http://curseforge.com/minecraft/mc-mods/modstats
 
-If you want to chat with the developers and join our amazing community.
+If you want to chat with the developers and join our amazing community:
 
 https://discord.minecolonies.com
