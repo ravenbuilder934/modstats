@@ -171,7 +171,7 @@ For Users
 
 All our versions can be found on Curseforge:
 
-http://curseforge.com/minecraft/mc-mods/modstats
+https://curseforge.com/minecraft/mc-mods/modstats
 
 If you want to chat with the developers and join our amazing community:
 
